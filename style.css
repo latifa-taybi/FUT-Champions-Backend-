@@ -1,0 +1,192 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color:white;
+}
+#terrain{
+    background-image: url(./images/stadium_background.jpg);
+    max-width: 850px;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    margin:10px;
+    border-radius: 10px;
+    margin: 10px auto;
+}
+
+span{
+    font-size: 8px;
+    margin:0 5px;
+}
+
+.ratingJoueur{
+    font-weight: bold;
+}
+
+.contain{
+    justify-self: center;
+}
+
+.joueur{
+    position: relative; 
+    max-width: 120px;
+}
+
+.informations{
+    position: absolute; 
+    top: 0;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+}
+
+.infoimg{
+    display:flex; 
+    align-items: center;
+    margin:23px 20px 5px 25px;
+}
+
+.infos{
+    display: flex; 
+    flex-direction: column; 
+    gap:3px;
+}
+
+.stats,.stats1,.stats2{
+    display: grid; 
+    grid-template-columns: repeat(2,1fr);
+}
+
+.button{
+    justify-content: space-around; 
+    gap: 50px; 
+    position: absolute; 
+    top: 10px;
+    display:none;
+}
+
+.joueur:hover .button{
+    display:flex;
+}
+
+.joueur:hover{
+    background-color: #77c0b88b;
+    border-radius: 10px;
+}
+
+.nomJoueur{
+    font-size: 80%; 
+    margin-bottom: 0;
+}
+
+.imgCarte{
+    width: 100%;
+}
+
+.remplacants{
+    border-radius: 10px;
+    border: 1px solid grey; 
+    margin:10px; 
+    display:grid; 
+    grid-template-columns: repeat(6,1fr);
+    gap: 5%;
+}
+
+.gauche{
+    display:flex;
+    gap:4rem ;
+}
+
+.droit{
+    display:flex;
+    gap:4rem ;
+}
+/* ---------------------------------------------------------------------------------- */
+h3 {
+    grid-column: span 3;
+    text-align: center;
+    color: #bdc5c7;
+    margin:5px;
+}
+
+.form{
+    display: grid;
+    gap: 10px; 
+    background-color: #323e4b;
+    padding: 5px 10px;
+    border-radius: 10px;
+    color: #ffffff;
+    margin: 10px 0;
+}
+
+label {
+    color: #bdc3c7;
+}
+
+input, select {
+    width: 100%;
+    padding: 11px;
+    background-color: #b9c8d6;
+    color: #373b3c;
+    border: 1px solid #7f8c8d;
+    border-radius: 5px;
+}
+
+.statistique,.statistiqueGK{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-column: span 3;        
+    gap: 10px;
+}
+
+.statistiqueGK{
+    display:none;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+}
+
+#add {
+    padding: 5px;
+    background-color: #64769a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: large;
+    cursor: pointer;
+    grid-column: span 3;
+    margin-top: 10px;
+}
+
+#formulaire{
+    display: flex; 
+    gap: 10px;
+}
+/* ---------------------------------------------------------------------------------- */
+
+ul{
+    list-style: none; 
+}
+
+ul li a{
+    text-decoration: none;
+    font-size: 20px;
+    color: #e4e3e3;
+}
+
+ul li a:hover{
+    text-decoration: none;
+    font-size: 20px;
+    color: #c1bdbd;
+}
+
+li{
+    margin: 20px 0;
+}
+
+#table{
+    margin: 10px 10px 10px 0;
+}
