@@ -1,3 +1,8 @@
+<?php
+    include 'connexion_database.php';
+    include 'insertJoueur.php'
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,17 +25,18 @@
           </nav>
     </header>
 
-    
     <section id="formulaire">
-        <div style="width: 300px; height: 100vh; background-color: rgb(61, 79, 104); ">
+        <div style="width: 300px; height: 100rem; background-color: rgb(61, 79, 104); ">
             <ul>
-                <li><a href="#">Joueurs</a></li>
+                <li><a href="dashboard.php">Dashboard</a></li>
                 <li><a href="formulaire.php">Formulaire</a></li>
                 <li><a href="#">Statistique</a></li>
+                <li><a href="clubs.php">Clubs</a></li>
+                <li><a href="nationalities.php">Nationalités</a></li>
             </ul>
         </div>
         <div style="width: 100%;" class="tableau">
-            <table class="table table-dark table-striped" id="table">
+            <table class="table table table-striped table-bordered" id="table">
                 <thead>
                     <tr>
                     <th scope="col">ID</th>
@@ -52,84 +58,35 @@
                 </thead>
                 <tbody>
                     <?php
-
-                        $servername = "localhost";
-                        $username = "root";
-                        $password = "";
-                        $dbname= "fut_champions";
-
-                        $conn = new mysqli($servername , $username , $password , $dbname );
-                            
-                        if($conn->connect_error){
-                            die("erreur de connexion" . $conn->connect_error);
-                        }
-
-                        if(isset($_POST["btnAjout"])){
-                            $photo = $_POST['photo'];
-                            $nom = $_POST['nom'];
-                            $rating = $_POST['rating'];
-                            $position = $_POST['position'];
-                            $pace = $_POST['pace'];
-                            $shooting = $_POST['shooting'];
-                            $passing = $_POST['passing'];
-                            $dribbling = $_POST['dribbling'];
-                            $defending = $_POST['defending'];
-                            $physical = $_POST['physical'];
-                            $nationality = $_POST['nationality'];
-                            $club = $_POST['club'];
-                            
-                            $stmt = $conn->prepare("INSERT INTO joueurs(photo, Nom, Rating, Position, Pac, Sho, Pas, Dri, Def, Phy, nationality_id, club_id) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);");
-
-                            $stmt->bind_param("ssisiiiiiiss",$photo, $nom, $rating, $position, $pace, $shooting, $passing, $dribbling, $defending, $physical, $nationality, $club);
-
-                            $stmt->execute();
-
-                            $stmt->close();
-                            $conn->close();
-                        }   
                         
-                        $sql = "SELECT * FROM joueurs";
+                        $sql = "SELECT ID, Photo, Nom, Rating, Position, Pac, Sho, Pas, Dri, Def, Phy, photo_nationality, photo_club 
+                                FROM joueurs
+                                JOIN clubs ON joueurs.club_id = clubs.club_id
+                                JOIN nationalities ON joueurs.nationality_id = nationalities.nationality_id;";
                         $result = $conn -> query($sql);
 
                         while($row = $result -> fetch_assoc()){
                             echo "
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>$row[ID]</td>
+                                <td><img src=".$row["Photo"]."></td>           
+                                <td>$row[Nom]</td>
+                                <td>$row[Rating]</td>
+                                <td>$row[Position]</td>
+                                <td>$row[Pac]</td>
+                                <td>$row[Sho]</td>
+                                <td>$row[Pas]</td>
+                                <td>$row[Dri]</td>
+                                <td>$row[Def]</td>
+                                <td>$row[Phy]</td>
+                                <td><img src=".$row["photo_nationality"]."></td>
+                                <td><img src=".$row["photo_club"]."></td>
+                                <td><a href=\"formulaire.php?id=".$row["ID"]."\"><button type=\"button\" name=\"edit\" class=\"btn btn-outline-primary\">Edit</button></a></td>
+                                <td><a href=\"suppression.php?id=".$row["ID"]."\"><button type=\"button\" name=\"delete\" class=\"btn btn-outline-danger\">Delete</button></a></td>
                             </tr>
                             ";
                         }
-                        
-                        
                     ?>
-                    <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    </tr>
                 </tbody>
             </table>
         </div>

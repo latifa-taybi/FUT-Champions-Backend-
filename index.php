@@ -58,7 +58,6 @@
           </div>
           <div class="joueur" id="carteST">
             <img class="imgCarte" src="./images/card-removebg-preview.png" alt="carte">
-            
             <div class="informations">
               <div class="button">
                 <img class="edit" src="" alt="">

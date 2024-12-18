@@ -1,3 +1,7 @@
+<?php
+    include 'connexion_database.php'
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,8 +28,10 @@
         <div style="width: 300px; height: 100vh; background-color: rgb(61, 79, 104); ">
             <ul>
                 <li><a href="dashboard.php">Dashboard</a></li>
-                <li><a href="#">Formulaire</a></li>
+                <li><a href="formulaire.php">Formulaire</a></li>
                 <li><a href="#">Statistique</a></li>
+                <li><a href="clubs.php">Clubs</a></li>
+                <li><a href="nationalities.php">Nationalités</a></li>
             </ul>
         </div>
         <div>
@@ -59,19 +65,25 @@
                     <div>
                     <label for="nationality">nationality</label>
                     <select name="nationality" id="nationality">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
+                        <?php
+                            $nationality = "SELECT * FROM nationalities";
+                            $resultNationalities = $conn -> query($nationality);
+                            while($rowNationalities = $resultNationalities -> fetch_assoc()){
+                                echo '<option value="'.$rowNationalities['nationality_id'].'">'.$rowNationalities['nationality_id'].'</option>';
+                            }
+                        ?>
                     </select>
                     </div>
                     <div>
                     <label for="club">club</label>
                     <select name="club" id="club">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
+                        <?php
+                            $club = "SELECT * FROM clubs";
+                            $resultclub = $conn -> query($club);
+                            while($rowclubs = $resultclub -> fetch_assoc()){
+                                echo '<option value="'.$rowclubs['club_id'].'">'.$rowclubs['club_id'].'</option>';
+                            }
+                        ?>
                     </select>
                     </div>
                     <div>

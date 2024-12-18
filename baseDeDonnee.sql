@@ -23,3 +23,5 @@ CREATE TABLE nationalities (
     photo
     nom VARCHAR(100) NOT NULL
 );
+
+

@@ -190,3 +190,7 @@ li{
 #table{
     margin: 10px 10px 10px 0;
 }
+
+tr td img{
+    width: 50px;
+}
