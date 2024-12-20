@@ -8,7 +8,7 @@
         $stmt->bind_param("ss",$photo_nationality, $nom_nationality);
 
         $stmt->execute();
-
+        
         $stmt->close();
     }
 ?>

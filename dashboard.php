@@ -1,6 +1,5 @@
 <?php
     include 'connexion_database.php';
-    include 'insertJoueur.php'
 ?>
 
 <!DOCTYPE html>
@@ -58,11 +57,12 @@
                 </thead>
                 <tbody>
                     <?php
-                        
+
                         $sql = "SELECT ID, Photo, Nom, Rating, Position, Pac, Sho, Pas, Dri, Def, Phy, photo_nationality, photo_club 
                                 FROM joueurs
                                 JOIN clubs ON joueurs.club_id = clubs.club_id
-                                JOIN nationalities ON joueurs.nationality_id = nationalities.nationality_id;";
+                                JOIN nationalities ON joueurs.nationality_id = nationalities.nationality_id
+                                order by ID;";
                         $result = $conn -> query($sql);
 
                         while($row = $result -> fetch_assoc()){
@@ -81,7 +81,7 @@
                                 <td>$row[Phy]</td>
                                 <td><img src=".$row["photo_nationality"]."></td>
                                 <td><img src=".$row["photo_club"]."></td>
-                                <td><a href=\"formulaire.php?id=".$row["ID"]."\"><button type=\"button\" name=\"edit\" class=\"btn btn-outline-primary\">Edit</button></a></td>
+                                <td><a href=\"modification.php?id=".$row["ID"]."\"><button type=\"button\" name=\"edit\" class=\"btn btn-outline-primary\">Edit</button></a></td>
                                 <td><a href=\"suppression.php?id=".$row["ID"]."\"><button type=\"button\" name=\"delete\" class=\"btn btn-outline-danger\">Delete</button></a></td>
                             </tr>
                             ";
